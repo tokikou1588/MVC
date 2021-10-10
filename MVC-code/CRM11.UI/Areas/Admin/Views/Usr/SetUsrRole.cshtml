@@ -1,0 +1,102 @@
+﻿@{
+    ViewBag.Title = "设置用户角色";
+}
+@section headSecion{
+<style type="text/css">
+    .tbList {
+        text-align: center;
+    }
+
+    select {
+        height: 200px;
+        width: 100px;
+    }
+</style>
+<script type="text/javascript">
+    $(function () {
+        $("#ddlDep").change(depChange);
+        $("#btnMoveRight").click(moveRight);
+        $("#btnSet").click();
+    });
+    //加载部门下的角色
+    function depChange() {
+        //部门id
+        var depId = this.value;
+        $.get("/admin/usr/GetDepRoles", "depId="+depId, function (json) {
+            $.msgProcess(json, function (jsonData) {
+                var $ddlRole = $("#ddlRole");
+                $ddlRole.children().remove();
+                $.each(jsonData.Data, function (i, role) {
+                    $ddlRole.append("<option value=\"" + role.roleId + "\">" + role.roleName + "</option>");
+                });
+            });
+        }, "json");
+    }
+
+    //将选中的 角色 移到 用户角色下拉框中
+    function moveRight() {
+        //1.获取用户已经有的角色选项
+        var $oldRoe = $("#ddlTarget option");
+        //2.获取新选中的 角色选项
+        var $selectedRole = $("#ddlRole option:checked");
+        //3.对比，看是否有相同的
+        var hasSameOpt = false;
+        $selectedRole.each(function (i, opt) {
+            var newRoleId = opt.value;
+            $oldRoe.each(function (ii, optOld) {
+                if (optOld.value == newRoleId)
+                {
+                    hasSameOpt = true;
+                    $.msgBoxObj.showInfo("已存在此权限~~！");
+                    return false;
+                }
+            });
+        });
+        if (!hasSameOpt) {
+            $selectedRole.appendTo("#ddlTarget");
+        }
+    }
+
+    function btnSet() {
+    }
+</script>
+}
+<table class="tbList">
+    <tr>
+        <td>部门</td>
+        <td>部门角色</td>
+        <td></td>
+        <td>用户角色</td>
+    </tr>
+    <tr>
+        <td>
+            <select id="ddlDep" multiple="true" name="ddlDep">
+                @foreach (var item in ViewBag.depList as IEnumerable<CRM11.MODEL.Department>)
+                { 
+                    <option value="@item.depId">@item.depName</option>
+                }
+            </select>
+        </td>
+        <td>
+            <select id="ddlRole" multiple="true"><option>请选择</option>
+            </select>
+        </td>
+        <td>
+            <input type="button" value="=>" id="btnMoveRight" /><br />
+            <input type="button" value="<=" id="btnMoveLeft" />
+        </td>
+        <td>
+            <select id="ddlTarget" multiple="true" name="ddlTarget">
+                @foreach (var item in ViewBag.roleList as IEnumerable<CRM11.MODEL.Role>)
+                {
+                    <option value="@item.roleId">@item.roleName</option>
+                }
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="4">
+            <input type="button" value="确定" id="btnSet" />
+        </td>
+    </tr>
+</table>

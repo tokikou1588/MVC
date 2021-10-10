@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "SetRolePer";
+}
+@using CRM11.MODEL;
+@section headSecion{
+    <script type="text/javascript">
+        $(function () {
+            $("input[value=设置]").click(setRolePer);
+        })
+        function setRolePer() {
+            var ids = "";
+            //1.获取选中的节点数据 数组
+            var checkedNodes = $('#perTree').tree('getChecked');
+            $.each(checkedNodes, function (i, nodeData) {
+                ids += nodeData.id + ","; 
+            })
+            //2.获取 半选中的节点数据 数组
+            var halfCheckedNodes = $('#perTree').tree('getChecked', "indeterminate");
+            $.each(halfCheckedNodes, function (i, nodeData) {
+                ids += nodeData.id + ",";
+            })
+            $.post("/admin/role/SetRolePer", { rid: "@Model.RoleID", newPerIds: ids }, function (jsonObj) {
+                $.msgProcess(jsonObj, function () {
+                    $.globalHelper.closeCommonWindow();
+                });
+            }, "json")
+        }
+    </script>
+}
+@model CRM11.UI.Areas.Admin.ViewModel.SetRolePer
+@helper LoadSonNode(int parentId)
+{
+    foreach (var per in Model.AllPers.FindAll(o => o.perParent == parentId))
+    {
+        @*
+         注意：如果当前权限 是 当前角色的权限，而且 整个权限集合中都没有它的子权限，则说明它是一个独立的权限，如果 角色权限 有它，则设置为选中状态
+               如果当前权限 是 当前角色的权限，而且 整个权限集合中有它的子权限，则设置为 非选中状态
+        *@
+    <li data-options="id:@per.perId,@if(Model.RolePers.SingleOrDefault(o=>
+        o.perId == per.perId)!=null && Model.AllPers.FirstOrDefault(o=>o.perParent==per.perId)==null)
+        {<text>checked:true</text>}">
+        <span>@per.perName</span>
+        <ul>@LoadSonNode(@per.perId)</ul>
+    </li>
+    }
+}
+<input type="button" value="设置" />
+<ul id="perTree" class="easyui-tree" data-options="checkbox:true">
+    @LoadSonNode(0)
+</ul>
+<input type="button" value="设置" />

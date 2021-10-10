@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "新增工作流申请单";
+}
+@using CRM11.UI.Extension
+@section headSecion{
+    <style type="text/css">
+    </style>
+    <script src="/Scripts/jquery.globalHelper.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $.globalHelper.datagridPara.init("/admin/UserWorkFlow/AddApplyList", [@Html.GetSonBtnJs()], [[
+                { field: 'wfName', title: '工作流名称', width: 30 },
+                { field: 'wfHtmlSrc', title: '工作流表单模板', width: 30 },
+                {
+                    field: 'WorkFlowNode', title: '工作流节点', width: 130, formatter: function (nodeArr, rowData, rowIndex) {
+                        var str = "";
+                        $.each(nodeArr, function (i, ele) {
+                            str += ele.wfnName + "->";
+                        });
+                        return str + "⊙";
+                    }
+                },
+                {
+                    field: 'wfAddtime', title: '排序', width: 20, formatter: function (colData) {
+                        return $.globalHelper.changeDateFormat(colData);
+                    }
+                }
+            ]]);
+            $("#tbList").datagrid($.globalHelper.datagridPara.paras);
+        });
+
+        @*根据当前登录用户 Session里 权限集合 的按钮，决定是否显示对应的按钮方法*@
+        @if(Html.IsBtnExist("addApply")){
+        <text>
+        function addApply()
+        {
+            ifSelected(function (rowData) {
+                $.globalHelper.showCommonWindow("新增申请单", "/admin/UserWorkFlow/AddApply/" + rowData.wfId, 500, 270);
+            })
+        }
+        </text>
+        }
+        //统一判断 是否有选中行，如果有，则调用回到函数（func），并传入 选中行的数据
+        function ifSelected(func)
+        {
+            //获取选中行的数据
+            var selectedRowData = $("#tbList").datagrid("getSelected");
+            if (selectedRowData) {
+                if (func && func instanceof Function)
+                {
+                    func(selectedRowData);//调用回调函数，并传入 选中行的数据
+                }
+            } else {
+                $.msgBoxObj.showInfo("请选中要操作的行 ~~~");
+            }
+        }
+    </script>
+}
+<table id="tbList"></table>

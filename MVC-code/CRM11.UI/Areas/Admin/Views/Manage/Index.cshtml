@@ -1,0 +1,109 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>后台首页</title>
+    <style type="text/css">
+        * {
+            font-family:微软雅黑;
+        }
+    </style>
+    <link href="/Easyui/themes/bootstrap/easyui.css" rel="stylesheet" />
+    <link href="/MsgBox/jquery.msgbox.css" rel="stylesheet" />
+    <link href="/Easyui/themes/icon.css" rel="stylesheet" />
+    <script src="/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="/Easyui/jquery.easyui.min.js"></script>
+    <script src="/MsgBox/jquery.msgbox.js"></script>
+    <script src="/Scripts/jquery.msgProcess.js"></script>
+    <script src="/Easyui/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            //1.初始化 选项卡容器
+            $("#tabBox").tabs();
+            //2.初始化公共窗体
+            $("#commonWindow").window({
+                iconCls: 'icon-tip',
+                modal: true,
+                minimizable: false,
+                resizable: false,
+                width: 1200,
+                height: 550,
+                title: '公共窗体',
+                closed: true
+            }).children("iframe").load(function () {//找到公共个窗体里的 iframe ，为其onload事件注册方法，关闭 进度条
+                $.messager.progress("close");
+            });
+
+            //3.初始树形菜单
+            $("#menuTree").tree({
+                url: "/admin/manage/getmenu",
+                onLoadSuccess: function (node, jsonData) {
+                    //如果返回的消息 对象 包含 Status属性，说明是返回的 json消息，那么就调用 msgProcess方法 统一处理
+                    //                   不包含Status属性，说明 返回的是 节点json数据
+                    if (jsonData.Status) {
+                        $.msgProcess(jsonData);
+                    }
+                },
+                onClick: nodeClick
+            });
+        })
+
+        //1.节点点击方法 参数：被点击的节点对应的Json数据对象
+        function nodeClick(nodeData) {
+            //判断当前节点点击时是否要打开页面
+            if (nodeData.attributes.isLink) {
+                //1.1如果有和被点击节点同名的选项卡，就自动切换过去
+                if (!$("#tabBox").tabs("exists", nodeData.text)) {
+                    //调用选项卡组件的 add 方法，并传入参数对象{title}
+                    $("#tabBox").tabs("add", {
+                        title: nodeData.text,//选项卡标题
+                        closable: true,//选项卡显示 关闭按钮
+                        content: createContent(nodeData.attributes.url)//设置选项卡内容
+                    });
+                } else {
+                    //判断 和被点击节点 同名的 选项卡 是否为选中状态
+                    //获取选中选项卡的标题
+                    var $curTab = $('#tabBox').tabs('getSelected');
+                    var curTabTitle = $curTab.panel("options").title;
+                    //如果是，则提示是否要刷新选项卡
+                    if (nodeData.text == curTabTitle) {
+                        $.messager.confirm('确认', "您确认想要刷新【"+curTabTitle+"】选项卡吗？", function (isOk) {
+                            if (isOk) {
+                                //从当前选中的 选项卡中 找到iframe
+                                var $ifrObj = $("iframe", $curTab);
+                                //重新设置iframe的src路径（刷新）
+                                $ifrObj.attr("src", nodeData.attributes.url);
+                            }
+                        });
+                    }
+                    //如果不是，则设置为选中
+                    else {
+                        //设置 同名选项卡 为选中状态
+                        $("#tabBox").tabs("select", nodeData.text);
+                    }
+                }
+            }
+        }
+
+        function createContent(url)
+        {
+            return "<iframe src='"+url+"' style='border:0px solid #000;width:100%;height:476px;'></iframe>";
+        }
+    </script>
+</head>
+<body class="easyui-layout">
+    <div data-options="region:'north',split:true" style="height:100px;font-size:54px; line-height:84px;padding-left:80px;">
+        欢迎使用CRM11客户关系管理系统
+    </div>
+    <div data-options="region:'west',title:'菜单导航',split:true" style="width:180px;">
+        <ul id="menuTree"></ul> 
+    </div>
+    <div data-options="region:'center'" style="padding:5px;background:#eee;">
+        <div id="tabBox"></div>
+    </div>
+    <div id="commonWindow"><iframe style="width: 99.9%; height: 99.4%; border: 0px;"></iframe></div> 
+</body>
+</html>

@@ -1,0 +1,101 @@
+﻿@model CRM11.UI.Areas.Admin.ViewModel.AddSonNode
+<style type="text/css">
+    #bllTBody {
+        display: none;
+    }
+    .redFont {
+        color:red;
+    }
+</style>
+
+@using (Ajax.BeginForm(new AjaxOptions() { OnBegin="begin",OnComplete="complete" }))
+{ 
+    <table class="tbList">
+        <tr>
+            <td style="width:100px;">@Html.DisplayNameFor(o => o.NodeName)</td>
+            <td>@Html.TextBoxFor(o => o.NodeName)</td>
+            <td>@Html.ValidationMessageFor(o => o.NodeName)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(o => o.PrevNodeId)</td>
+            <td>
+                @Html.DropDownListFor(o => o.PrevNodeId, ViewBag.otherSonNodes as SelectList)
+            </td>
+            <td><span class="field-validation-valid" data-valmsg-for="wfnPrevNodeId" data-valmsg-replace="true"></span></td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(o => o.NodeType)</td>
+            <td>
+                @Html.DropDownListFor(o => o.NodeType, ViewBag.nodeType as IEnumerable<SelectListItem>)
+            </td>
+            <td><span class="field-validation-valid" data-valmsg-for="wfnType" data-valmsg-replace="true"></span></td>
+        </tr>
+        <tbody id="bllTBody">
+            <tr>
+                <td style="width:100px;">@Html.DisplayNameFor(o => o.BLLClassName)</td>
+                <td>@Html.TextBoxFor(o => o.BLLClassName)</td>
+                <td>@Html.ValidationMessageFor(o => o.BLLClassName)</td>
+            </tr>
+            <tr>
+                <td style="width:100px;"></td>
+                <td>
+                    True分支节点ID
+                </td>
+                <td>
+                    False分支节点ID
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    @Html.DropDownListFor(o => o.TrueNode, ViewBag.otherSonNodes as SelectList)
+                </td>
+                <td>@Html.DropDownListFor(o => o.FalseNode, ViewBag.otherSonNodes as SelectList)
+                </td>
+            </tr>
+        </tbody>
+        <tr>
+            <td colspan="3">
+                <input type="submit" value="确定" />
+            </td>
+        </tr>
+    </table>
+}
+
+<script type="text/javascript">
+    $.validator.unobtrusive.parse(document);
+    //2.为节点类型下拉框绑定 onchange事件
+    $("#NodeType").change(function () {
+        if (this.value == 2) {
+            //如果选中的上个节点 为 设置为首节点，则不允许 是业务节点
+            if ($("#PrevNodeId").val() == -1)
+            {
+                $.msgBoxObj.showInfo("首节点不允许设置为业务节点~~！请贱谅~~！");
+                this.value = 1;
+            }else{
+                $("#bllTBody").show();
+            }
+        } else {
+            $("#bllTBody").hide();
+        }
+    });
+    //3.为【上个节点下拉框】加入 “设置为首节点” 选项
+    var $firstPrevNodeOpt=$("#PrevNodeId option:first");
+    if ($firstPrevNodeOpt.length > 0) {
+        $("<option style='color:red;' value='-1' selected>设置为首节点</option>").insertBefore($("#PrevNodeId option:first"));
+    } else {
+        $("<option style='color:red;' value='-1' selected>设置为首节点</option>").appendTo($("#PrevNodeId"));
+    }
+
+    function begin() {
+        $.msgBoxObj.showWait("加载中......");
+    }
+    function complete(xhrObj)
+    {
+        $.msgBoxObj.hide();
+        $.msgProcess(xhrObj.responseText, function () {
+            $("#tbList").datagrid("reload");
+            $("#smallWindow").window("close");
+        });
+    }
+</script>

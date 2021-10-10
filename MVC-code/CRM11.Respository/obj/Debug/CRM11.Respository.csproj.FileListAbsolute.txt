@@ -1,0 +1,14 @@
+F:\03广州传智.Net上课视频\DotNet11期\2014-04-99CRM11\Src\CRM11.Respository\obj\Debug\CRM11.Respository.csprojResolveAssemblyReference.cache
+F:\03广州传智.Net上课视频\DotNet11期\2014-04-99CRM11\Src\CRM11.Respository\bin\Debug\CRM11.Respository.dll
+F:\03广州传智.Net上课视频\DotNet11期\2014-04-99CRM11\Src\CRM11.Respository\bin\Debug\CRM11.Respository.pdb
+F:\03广州传智.Net上课视频\DotNet11期\2014-04-99CRM11\Src\CRM11.Respository\bin\Debug\CRM11.MODEL.dll
+F:\03广州传智.Net上课视频\DotNet11期\2014-04-99CRM11\Src\CRM11.Respository\bin\Debug\EntityFramework.dll
+F:\03广州传智.Net上课视频\DotNet11期\2014-04-99CRM11\Src\CRM11.Respository\bin\Debug\CRM11.MODEL.pdb
+F:\03广州传智.Net上课视频\DotNet11期\2014-04-99CRM11\Src\CRM11.Respository\bin\Debug\EntityFramework.xml
+F:\03广州传智.Net上课视频\DotNet11期\2014-04-99CRM11\Src\CRM11.Respository\bin\Debug\zh-Hans\EntityFramework.resources.dll
+F:\03广州传智.Net上课视频\DotNet11期\2014-04-99CRM11\Src\CRM11.Respository\obj\Debug\CRM11.Respository.dll
+F:\03广州传智.Net上课视频\DotNet11期\2014-04-99CRM11\Src\CRM11.Respository\obj\Debug\CRM11.Respository.pdb
+F:\03广州传智.Net上课视频\DotNet11期\2014-04-99CRM11\Src\CRM11.Respository\bin\Debug\CRM11.IRespository.dll
+F:\03广州传智.Net上课视频\DotNet11期\2014-04-99CRM11\Src\CRM11.Respository\bin\Debug\CRM11.IRespository.pdb
+F:\03广州传智.Net上课视频\DotNet11期\2014-04-99CRM11\Src\CRM11.UI\bin\CRM11.Respository.dll
+F:\03广州传智.Net上课视频\DotNet11期\2014-04-99CRM11\Src\CRM11.UI\bin\CRM11.Respository.pdb

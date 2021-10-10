@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{34F9340E-AC26-4A98-AF6C-0B25E676ECA8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CRM11.IService</RootNamespace>
+    <AssemblyName>CRM11.IService</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IBaseService.cs" />
+    <Compile Include="IServiceSession1.cs">
+      <DependentUpon>IServiceSession.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="IServiceSession.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SonInterfacePartial\IDepartment.cs" />
+    <Compile Include="SonInterfacePartial\IEmployee.cs" />
+    <Compile Include="SonInterfacePartial\IWorkFlowNode.cs" />
+    <Compile Include="SonInterface\IWorkFLow.cs">
+      <DependentUpon>SonInterface.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SonInterface\IWorkFlowApply.cs">
+      <DependentUpon>SonInterface.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SonInterface\IWorkFlowApplyDetail.cs">
+      <DependentUpon>SonInterface.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SonInterface\IWorkFlowBLLBranchNode.cs">
+      <DependentUpon>SonInterface.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SonInterface\IWorkFlowNode.cs">
+      <DependentUpon>SonInterface.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SonInterface\IWorkFlowNodeRole.cs">
+      <DependentUpon>SonInterface.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SonInterface\SonInterface.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SonInterface.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SonInterface\IDepartment.cs">
+      <DependentUpon>SonInterface.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SonInterface\IEmployee.cs">
+      <DependentUpon>SonInterface.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SonInterface\IEmpRoleRelation.cs">
+      <DependentUpon>SonInterface.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SonInterface\IPermission.cs">
+      <DependentUpon>SonInterface.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SonInterface\IRole.cs">
+      <DependentUpon>SonInterface.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SonInterface\IRolePerRelationship.cs">
+      <DependentUpon>SonInterface.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SonInterface\IVipPermssion.cs">
+      <DependentUpon>SonInterface.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="IServiceSession.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>IServiceSession1.cs</LastGenOutput>
+    </None>
+    <None Include="SonInterface\SonInterface.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SonInterface.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CRM11.MODEL\CRM11.MODEL.csproj">
+      <Project>{24004b3e-b689-45bc-b95a-6e540f713e6c}</Project>
+      <Name>CRM11.MODEL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

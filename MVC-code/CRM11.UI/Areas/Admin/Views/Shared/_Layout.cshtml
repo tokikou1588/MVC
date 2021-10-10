@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <style type="text/css">
+        * {
+            font-family: 微软雅黑;
+            font-size:14px;
+        }
+        .tbList {
+            border:1px solid #ddd;
+            width:99.5%;
+            height:99.5%;
+            border-collapse:collapse;
+        }
+        .tbList td, .tbList th {
+            border: 1px solid #ddd;
+            padding: 5px;
+        }
+    </style>
+    <link href="/Easyui/themes/bootstrap/easyui.css" rel="stylesheet" />
+    <link href="/MsgBox/jquery.msgbox.css" rel="stylesheet" />
+    <link href="/Easyui/themes/icon.css" rel="stylesheet" />
+    <script src="/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="/Easyui/jquery.easyui.min.js"></script>
+    <script src="/MsgBox/jquery.msgbox.js"></script>
+    <script src="/Scripts/jquery.msgProcess.js"></script>
+
+    <script src="/Scripts/jquery.validate.min.js"></script>
+    <script src="/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="/Easyui/easyui-lang-zh_CN.js"></script>
+    <script src="/Scripts/jquery.globalHelper.js"></script>
+
+    @RenderSection("headSecion", required: false)
+</head>
+<body>
+    @RenderBody()
+</body>
+</html>

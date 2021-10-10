@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "查看带审批的申请单";
+}
+@using CRM11.UI.Extension
+@section headSecion{
+    <style type="text/css">
+    </style>
+    <script src="/Scripts/jquery.globalHelper.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $.globalHelper.datagridPara.init("/admin/UserWorkFlow/ApproveApplyList", [@Html.GetSonBtnJs()], [[
+                {
+                    field: 'wfaTitle', title: '申请单标题', width: 30, formatter: function (coldata,rowdata) {
+                        return "<a href='javascript:showApplyDetail(" + rowdata.wfaId + ")'>" + coldata + "</a>";
+                    }
+                },
+                {
+                    field: 'WorkFLow', title: '所属工作流', width: 30, formatter: function (colData) {
+                        return colData.wfName;
+                    }
+                },
+                {
+                    field: 'WorkFlowNode', title: '所处节点', width: 30, formatter: function (colData, rowData, rowIndex) {
+                        return colData.wfnName;
+                    }
+                },
+                { field: 'wfaContent', title: '申请内容', width: 30 },
+                { field: 'StatuName', title: '状态', width: 30 },
+                { field: 'PriorityName', title: '优先级', width: 30 },
+                {
+                    field: 'wfaAddTime', title: '时间', width: 20, formatter: function (colData) {
+                        return $.globalHelper.changeDateFormat(colData);
+                    }
+                }
+            ]]);
+            $("#tbList").datagrid($.globalHelper.datagridPara.paras);
+        });
+
+        @*根据当前登录用户 Session里 权限集合 的按钮，决定是否显示对应的按钮方法*@
+        //统一判断 是否有选中行，如果有，则调用回到函数（func），并传入 选中行的数据
+        function ifSelected(func)
+        {
+            //获取选中行的数据
+            var selectedRowData = $("#tbList").datagrid("getSelected");
+            if (selectedRowData) {
+                if (func && func instanceof Function)
+                {
+                    func(selectedRowData);//调用回调函数，并传入 选中行的数据
+                }
+            } else {
+                $.msgBoxObj.showInfo("请选中要操作的行 ~~~");
+            }
+        }
+        //-------------------------------------------
+        //显示申请单明细
+        function showApplyDetail(applyId)
+        {
+            $.globalHelper.showCommonWindow("查看申请单明细", "/admin/userworkflow/ApproveApply/" + applyId);
+        }
+    </script>
+}
+<table id="tbList"></table>

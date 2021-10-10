@@ -1,0 +1,152 @@
+﻿@{
+    Layout = null;
+}
+@model CRM11.UI.ViewModel.LoginModel
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>登录</title>
+    <link href="/Easyui/themes/icon.css" rel="stylesheet" />
+    <link href="/Easyui/themes/bootstrap/easyui.css" rel="stylesheet" />
+    <script src="/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="/Easyui/jquery.easyui.min.js"></script>
+
+    <script src="/Scripts/jquery.validate.min.js"></script>
+    <script src="/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    <script src="/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+    <link href="/MsgBox/jquery.msgbox.css" rel="stylesheet" />
+    <script src="/MsgBox/jquery.msgbox.js"></script>
+    <script src="/Scripts/jquery.msgProcess.js"></script>
+
+    <style type="text/css">
+        #tbList {
+            border:0px #000 solid;
+            width:97%;
+            margin:5px auto;
+            border-collapse:collapse;
+        }
+        #tbList td {
+            border: 0px #000 solid;
+            padding:5px 10px;
+        }
+        .validation-summary-errors ul{
+            list-style-type:none;
+            padding:0px;
+           text-align:left;
+           width:200px;
+           margin:0px auto;
+           color:red;
+        }
+        .validation-summary-errors ul li{
+        }
+    </style>
+
+    <script type="text/javascript">
+        //var a = { name: "xiaobai" };
+        //var b = { age: 12, sayHi: function () { }};
+        //$.extend(a, b);
+
+        //$.extend($, { hi: function () { } });
+
+        //function Invoke(func) {
+        //    if (func && func instanceof Function)
+        //    {
+        //        func("123123");
+        //    }
+        //}
+
+        //Invoke(function (name) {
+        //    alert(name);
+        //});
+
+        //var AA = function(cc)
+        //{
+        //    alert(cc);
+        //}
+
+        //Invoke(AA);
+
+        //函数的自执行：主要用于一次性的方法
+        //(function (x) {
+        //    alert("123123" + x);
+        //})("abc");
+
+        $(function () {
+            $("#loginWindow").window({
+                iconCls: 'icon-tip',
+                modal: true,
+                closable: false,
+                maximizable: false,
+                minimizable: false,
+                collapsible: false,
+                draggable: false,
+                resizable: false,
+                width: 400,
+                height:250,
+                title: '欢迎登录'
+            });
+
+            $("#imgVCode").click(function () {
+                this.src = "/VCode.ashx?r="+Math.random();
+            })
+        })
+
+        //登录请求发送前执行
+        function begin() {
+            $.msgBoxObj.showWait("登录中，客官请稍后~~");
+        }
+        //接收到响应报文后执行
+        function complete(xhrObj) {
+            $.msgBoxObj.hide();
+            //responseText  =   {"Status":1,"Msg":"登录成功了~","BackUrl":"/admin/manage/index","Data":null}
+            $.msgProcess(xhrObj.responseText);
+        }
+    </script>
+
+</head>
+<body>
+    <div id="loginWindow">
+        @using (Ajax.BeginForm(new AjaxOptions() { HttpMethod = "post", OnBegin = "begin",OnComplete="complete" }))
+        {
+        <table id="tbList">
+            <tr>
+                <td>@Html.DisplayNameFor(o => o.LoginName)</td>
+                <td colspan="2">
+                    @Html.TextBoxFor(o => o.LoginName, new { Value="xiaobai"})
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(o => o.LoginPwd)</td>
+                <td colspan="2">                   
+                    @Html.PasswordFor(o => o.LoginPwd, new { value = "123123" })
+                </td>
+            </tr>
+            <tr>
+                <td style="width:50px;">@Html.DisplayNameFor(o => o.LoginCode)</td>
+                <td>
+                    @Html.TextBoxFor(o => o.LoginCode)
+                </td>
+                <td style="width:120px;padding-left:0px;">
+                    <img id="imgVCode" src="/VCode.ashx" style="cursor:pointer;" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" style="text-align:center;">
+                    <input type="submit" value="登录" />
+                    <input type="checkbox" name="IsKeepLogin" value="true" /> 是否保持登录？
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" style="text-align:center;">
+                   @Html.ValidationSummary()
+                </td>
+            </tr>
+        </table> 
+        }
+    </div>
+</body>
+</html>

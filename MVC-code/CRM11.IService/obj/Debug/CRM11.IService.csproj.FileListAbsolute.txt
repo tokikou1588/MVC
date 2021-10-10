@@ -1,0 +1,7 @@
+F:\03广州传智.Net上课视频\DotNet11期\2014-04-99CRM11\Src\CRM11.IService\bin\Debug\CRM11.IService.dll
+F:\03广州传智.Net上课视频\DotNet11期\2014-04-99CRM11\Src\CRM11.IService\bin\Debug\CRM11.IService.pdb
+F:\03广州传智.Net上课视频\DotNet11期\2014-04-99CRM11\Src\CRM11.IService\obj\Debug\CRM11.IService.csprojResolveAssemblyReference.cache
+F:\03广州传智.Net上课视频\DotNet11期\2014-04-99CRM11\Src\CRM11.IService\obj\Debug\CRM11.IService.dll
+F:\03广州传智.Net上课视频\DotNet11期\2014-04-99CRM11\Src\CRM11.IService\obj\Debug\CRM11.IService.pdb
+F:\03广州传智.Net上课视频\DotNet11期\2014-04-99CRM11\Src\CRM11.IService\bin\Debug\CRM11.MODEL.dll
+F:\03广州传智.Net上课视频\DotNet11期\2014-04-99CRM11\Src\CRM11.IService\bin\Debug\CRM11.MODEL.pdb

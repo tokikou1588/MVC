@@ -1,0 +1,17 @@
+F:\03广州传智.Net上课视频\DotNet11期\2014-04-99CRM11\Src\CRM11.Service\bin\Debug\CRM11.Service.dll
+F:\03广州传智.Net上课视频\DotNet11期\2014-04-99CRM11\Src\CRM11.Service\bin\Debug\CRM11.Service.pdb
+F:\03广州传智.Net上课视频\DotNet11期\2014-04-99CRM11\Src\CRM11.Service\bin\Debug\CRM11.IRespository.dll
+F:\03广州传智.Net上课视频\DotNet11期\2014-04-99CRM11\Src\CRM11.Service\bin\Debug\CRM11.IService.dll
+F:\03广州传智.Net上课视频\DotNet11期\2014-04-99CRM11\Src\CRM11.Service\bin\Debug\CRM11.MODEL.dll
+F:\03广州传智.Net上课视频\DotNet11期\2014-04-99CRM11\Src\CRM11.Service\bin\Debug\CRM11.IRespository.pdb
+F:\03广州传智.Net上课视频\DotNet11期\2014-04-99CRM11\Src\CRM11.Service\bin\Debug\CRM11.IService.pdb
+F:\03广州传智.Net上课视频\DotNet11期\2014-04-99CRM11\Src\CRM11.Service\bin\Debug\CRM11.MODEL.pdb
+F:\03广州传智.Net上课视频\DotNet11期\2014-04-99CRM11\Src\CRM11.Service\obj\Debug\CRM11.Service.csprojResolveAssemblyReference.cache
+F:\03广州传智.Net上课视频\DotNet11期\2014-04-99CRM11\Src\CRM11.Service\obj\Debug\CRM11.Service.dll
+F:\03广州传智.Net上课视频\DotNet11期\2014-04-99CRM11\Src\CRM11.Service\obj\Debug\CRM11.Service.pdb
+F:\03广州传智.Net上课视频\DotNet11期\2014-04-99CRM11\Src\CRM11.Service\bin\Debug\CRM11.Utility.dll
+F:\03广州传智.Net上课视频\DotNet11期\2014-04-99CRM11\Src\CRM11.Service\bin\Debug\Spring.Core.dll
+F:\03广州传智.Net上课视频\DotNet11期\2014-04-99CRM11\Src\CRM11.Service\bin\Debug\Common.Logging.dll
+F:\03广州传智.Net上课视频\DotNet11期\2014-04-99CRM11\Src\CRM11.Service\bin\Debug\CRM11.Utility.pdb
+F:\03广州传智.Net上课视频\DotNet11期\2014-04-99CRM11\Src\CRM11.UI\bin\CRM11.Service.dll
+F:\03广州传智.Net上课视频\DotNet11期\2014-04-99CRM11\Src\CRM11.UI\bin\CRM11.Service.pdb

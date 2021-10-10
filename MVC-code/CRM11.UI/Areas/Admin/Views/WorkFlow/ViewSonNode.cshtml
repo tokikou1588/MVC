@@ -1,0 +1,81 @@
+﻿@{
+    ViewBag.Title = "查看子节点列表";
+}
+@using CRM11.UI.Extension
+@section headSecion{
+    <style type="text/css">
+    </style>
+    <script src="/Scripts/jquery.globalHelper.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $.globalHelper.datagridPara.init("/admin/WorkFlow/ViewSonNode/@ViewBag.wfId", [@Html.GetSonBtnJs()], [[
+                { field: 'wfnName', title: '节点名称', width: 30 },
+                {
+                    field: 'Roles', title: '节点审批角色', width: 30, formatter: function (colData) {
+                        var str = "";
+                        $.each(colData, function (i, ele) {
+                            str += ele.roleName + ",";
+                        });
+                        return str;
+                    }
+                },
+                {
+                    field: 'wfnType', title: '节点类型', width: 30, formatter: function (colData) {
+                        switch (colData) {
+                            case 1: return "普通节点";
+                            case 2: return "业务节点";
+                        }
+                    }
+                },
+                { field: 'wfnBLLClassName', title: '业务类名称', width: 30 },
+                { field: 'wfnOrder', title: '序号', width: 30 }
+            ]]);
+            $("#tbList").datagrid($.globalHelper.datagridPara.paras);
+
+            //初始化小窗体
+            $("#smallWindow").window({
+                iconCls: 'icon-tip',
+                modal: true,
+                minimizable: false,
+                resizable: false,
+                width: 500,
+                height: 400,
+                closed: true,
+                title: '小窗体'
+            }).window("center");
+        });
+        @if(Html.IsBtnExist("addSon"))
+        {<text>
+        function addSon() {
+            //1.异步请求 新增节点 分部视图的html代码
+            $.get("/admin/workflow/addson/@ViewBag.wfId", null, function (htmlStr) {
+                //2.将html代码显示到 小窗体中
+                $("#smallWindow").html(htmlStr).window({
+                    closed: false,
+                    title: '新增节点'
+                });
+            });
+        }</text>
+        }
+        @if (Html.IsBtnExist("setNodeRole"))
+        {<text>
+        function setNodeRole() {
+            
+        }</text>
+        }
+    //统一判断 是否有选中行，如果有，则调用回到函数（func），并传入 选中行的数据
+        function ifSelected(func) {
+            //获取选中行的数据
+            var selectedRowData = $("#tbList").datagrid("getSelected");
+            if (selectedRowData) {
+                if (func && func instanceof Function) {
+                    func(selectedRowData);//调用回调函数，并传入 选中行的数据
+                }
+            } else {
+                $.msgBoxObj.showInfo("请选中要操作的行 ~~~");
+            }
+        }
+    </script>
+}
+<table id="tbList"></table>
+<div id="smallWindow"></div>

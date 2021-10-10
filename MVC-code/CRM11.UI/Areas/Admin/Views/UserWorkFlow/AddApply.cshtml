@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "新增申请单";
+}
+@model CRM11.UI.Areas.Admin.ViewModel.AddApplyViewModel
+
+@section headSecion{
+<script type="text/javascript">
+    function begin() {
+        $.msgBoxObj.showWait("请稍后~~~：）");
+    }
+    function complete(xhrObj) {
+        $.msgBoxObj.hide();
+        $.msgProcess(xhrObj.responseText, function () {
+            $.globalHelper.reloadSeletecTabDataGrid();
+            $.globalHelper.closeCommonWindow();//消息显示完毕后，关闭公共窗体
+        });
+    }
+</script>    
+}
+
+@using (Ajax.BeginForm(new AjaxOptions() { OnBegin = "begin", OnComplete = "complete" }))
+{ 
+<table class="tbList">
+    <tr>
+        <td style="width:100px;">@Html.DisplayNameFor(o => o.wfaTitle)</td>
+        <td>@Html.TextBoxFor(o => o.wfaTitle)</td>
+        <td>@Html.ValidationMessageFor(o => o.wfaTitle)</td>
+    </tr>
+    <tr>
+        <td style="width:100px;">@Html.DisplayNameFor(o => o.wfaContent)</td>
+        <td>@Html.TextBoxFor(o => o.wfaContent)</td>
+        <td>@Html.ValidationMessageFor(o => o.wfaContent)</td>
+    </tr>
+    <tr>
+        <td style="width:100px;">@Html.DisplayNameFor(o => o.wfaRemark)</td>
+        <td>@Html.TextBoxFor(o => o.wfaRemark)</td>
+        <td>@Html.ValidationMessageFor(o => o.wfaRemark)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(o => o.wfaPriority)</td>
+        <td>
+            @Html.DropDownListFor(o => o.wfaPriority, CRM11.UI.Helper.EnumHelper.ApplyPriority.DDLData)
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td colspan="3">
+            <input type="submit" value="确定" />
+        </td>
+    </tr>
+</table>
+}

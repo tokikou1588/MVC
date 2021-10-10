@@ -1,0 +1,119 @@
+﻿@{
+    ViewBag.Title = "新增权限";
+}
+@model CRM11.UI.Areas.Admin.ViewModel.Permission
+@section headSecion{
+    <style type="text/css">
+        #imgIco {
+            width:16px;
+            height:16px;
+            margin-top:4px;
+            display:inline-block;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            //1.当父权限下拉框的value值改变时，自动生成 要添加的子权限的 序号
+            $("#perParent").change(loadOrderNumber);
+            $("#perParent").change();
+
+            $("#perIco").change(changeIcon);
+            $("#perIco").change();
+        })
+
+        //1.自动生成 序号
+        function loadOrderNumber()
+        {
+            //1.1获取 选中的父权限id
+            var parentId = this.value;
+            $.post("/admin/permission/loadordernumber", { pId: parentId }, function (data) {
+                $("#perOrder").val(data);
+            });
+        }
+
+        function changeIcon()
+        {
+            //把选中的 图标样式 设置给 演示的 div
+            document.getElementById("imgIco").className = this.value;
+            //$("#imgIco").class = this.value;
+        }
+
+        function begin() {
+            $.msgBoxObj.showWait("请稍后~~~：）");
+        }
+        function complete(xhrObj) {
+            $.msgBoxObj.hide();
+            $.msgProcess(xhrObj.responseText, function () {
+                $.globalHelper.reloadSeletecTabDataGrid();
+                $.globalHelper.closeCommonWindow();//消息显示完毕后，关闭公共窗体
+            });
+        }
+    </script>
+}
+@using (Ajax.BeginForm(new AjaxOptions() { OnBegin = "begin", OnComplete = "complete" }))
+{
+<table class="tbList">
+    <tr>
+        <td>@Html.DisplayNameFor(o => o.perName)</td>
+        <td>@Html.TextBoxFor(o => o.perName)</td>
+        <td>@Html.ValidationMessageFor(o => o.perName)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(o => o.perParent)</td>
+        <td>@Html.DropDownListFor(o => o.perParent, ViewBag.parPers as IEnumerable<SelectListItem>)</td>
+        <td>@Html.ValidationMessageFor(o => o.perParent)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(o => o.perAreaName)</td>
+        <td>@Html.TextBoxFor(o => o.perAreaName)</td>
+        <td>@Html.ValidationMessageFor(o => o.perAreaName)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(o => o.perControllerName)</td>
+        <td>@Html.TextBoxFor(o => o.perControllerName)</td>
+        <td>@Html.ValidationMessageFor(o => o.perControllerName)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(o => o.perActionName)</td>
+        <td>@Html.TextBoxFor(o => o.perActionName)</td>
+        <td>@Html.ValidationMessageFor(o => o.perActionName)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(o => o.perFormMethod)</td>
+        <td>@Html.DropDownListFor(o => o.perFormMethod, CRM11.UI.Helper.EnumHelper.FormMethod.DDLData)</td>
+        <td>@Html.ValidationMessageFor(o => o.perFormMethod)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(o => o.perOperationType)</td>
+        <td>@Html.DropDownListFor(o => o.perOperationType, CRM11.UI.Helper.EnumHelper.OperationType.DDLData)</td>
+        <td>@Html.ValidationMessageFor(o => o.perOperationType)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(o => o.perIco)</td>
+        <td>@Html.DropDownListFor(o => o.perIco, CRM11.UI.Helper.EnumHelper.IconClassName.DDLData) <div class="icon-cut" id="imgIco"></div></td>
+        <td>@Html.ValidationMessageFor(o => o.perIco)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(o => o.perOrder)</td>
+        <td>@Html.TextBoxFor(o => o.perOrder)</td>
+        <td>@Html.ValidationMessageFor(o => o.perOrder)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(o => o.perJsMethodName)</td>
+        <td>@Html.TextBoxFor(o => o.perJsMethodName)</td>
+        <td>@Html.ValidationMessageFor(o => o.perJsMethodName)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(o => o.perRemark)</td>
+        <td>@Html.TextBoxFor(o => o.perRemark)</td>
+        <td>@Html.ValidationMessageFor(o => o.perRemark)</td>
+    </tr>
+    <tr>
+        <td colspan="3">
+            <input type="submit" value="确定新增" />
+            @Html.DisplayNameFor(o => o.perIsLink) @Html.CheckBoxFor(o => o.perIsLink)
+            @Html.DisplayNameFor(o => o.perIsShow) @Html.CheckBoxFor(o => o.perIsShow)
+        </td>
+    </tr>
+</table>
+}

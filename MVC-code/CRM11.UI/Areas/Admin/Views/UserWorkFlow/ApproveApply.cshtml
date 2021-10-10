@@ -1,0 +1,120 @@
+﻿@{
+    ViewBag.Title = "审批申请单";
+}
+@model CRM11.MODEL.WorkFlowApply
+@section headSecion{
+    <style type="text/css">
+        h1 {
+            font-size: 26px;
+        }
+
+        .bigFont {
+            font-size: 18px;
+        }
+
+        hr {
+            border: 2px dashed #ccc;
+        }
+
+        .tbList td {
+            text-align: center;
+        }
+
+        #tbApprove {
+            margin: 5px auto;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            //为页面上 所有的 包含 opeId属性的 按钮绑定同一个方法
+            $("input[type=button][opeId]").click(doClick);
+        });
+
+        function doClick() {
+            if ($("#txtContent").val().trim() == "") {
+                $.msgBoxObj.showMsgErr("审批意见不能为空~~！");
+            } else {
+                var data = {
+                    txtContent: $("#txtContent").val(),
+                    opeType: $(this).attr("opeId"),//获取被点击按钮上 的 操作枚举值
+                    applyId: $("#txtApplyId").val()
+                };
+                $.post("/admin/UserWorkFlow/ApproveApply/", data, function (msgObj) {
+                    $.msgProcess(msgObj, function () {
+                        $.globalHelper.reloadSeletecTabDataGrid();
+                        $.globalHelper.closeCommonWindow();
+                    });
+                }, "json");
+            }
+        }
+    </script>
+}
+
+<h1>您正在审批：申请单 【@Model.wfaTitle】</h1>
+<table class="tbList bigFont">
+    <tr>
+        <th>申请内容</th>
+        <th>工作流名称</th>
+        <th>当前节点</th>
+        <th>状态</th>
+        <th>优先级</th>
+    </tr>
+    <tr style="text-align:center;">
+        <td>@Model.wfaContent</td>
+        <td>@Model.WorkFLow.wfName</td>
+        <td>@Model.WorkFlowNode.wfnName</td>
+        <td style="color:red;font-weight:bold;font-size:20px;">@CRM11.UI.Helper.EnumHelper.ApplyStatue.DDLData.Single(o => o.Value == Model.wfaStatue.ToString()).Text</td>
+        <td>@CRM11.UI.Helper.EnumHelper.ApplyPriority.DDLData.Single(o => o.Value == Model.wfaPriority.ToString()).Text</td>
+    </tr>
+    <tr>
+        <td>申请原因</td>
+        <td colspan="4" style="text-align:left;">
+            @Model.wfaRemark
+        </td>
+    </tr>
+</table>
+
+<hr />
+
+<h1>申请单明细</h1>
+<table class="tbList bigFont">
+    <tr>
+        <th>处理人</th>
+        <th>操作</th>
+        <th>操作内容</th>
+        <th>处理节点</th>
+        <th>处理时间</th>
+    </tr>
+    @foreach (var item in Model.WorkFlowApplyDetail)
+    {
+        <tr style="text-align:center;">
+            <td>@item.Employee.empCnName</td>
+            <td>@CRM11.UI.Helper.EnumHelper.ApplyOperation.DDLData.Single(o => o.Value == item.wfadOperation.ToString()).Text</td>
+            <td>@item.wfadContent</td>
+            <td>@item.WorkFlowNode.wfnName</td>
+            <td>@item.wfadAddTime.ToString()</td>
+        </tr>
+    }
+</table>
+
+@if (Model.wfaStatue == CRM11.UI.Helper.EnumHelper.ApplyStatue.RUNING)
+{
+    <hr />
+    <form id="f11">
+        <table id="tbApprove" class="tbList" style="width:400px;">
+            <tr>
+                <td>审批意见：</td>
+                <td><textarea id="txtContent" name="txtContent"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="button" opeid="2" id="btnPass" value="通过" />
+                    <input type="button" opeid="3" id="btnReject" value="驳回(返回上一级)" />
+                    <input type="button" opeid="4" id="btnRefuse" value="拒绝" />
+
+                    <input id="txtApplyId" type="hidden" name="txtApplyId" value="@Model.wfaId" />
+                </td>
+            </tr>
+        </table>
+    </form>
+}

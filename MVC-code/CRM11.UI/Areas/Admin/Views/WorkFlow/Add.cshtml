@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "新增工作流";
+}
+@model CRM11.UI.Areas.Admin.ViewModel.WorkFlow
+@section headSecion{
+    <script type="text/javascript">
+        function begin() {
+            $.msgBoxObj.showWait("加载中...");
+        }
+
+        function complete(xhrObj) {
+            $.msgProcess(xhrObj.responseText, function (jsonData) {
+                //1.关闭公共窗体
+                $.globalHelper.closeCommonWindow();
+                //2.刷新后台首页 上 当前选中选项卡里的 iframe里的 datagrid组件
+                $.globalHelper.reloadSeletecTabDataGrid();
+            });
+        }
+    </script>
+}
+
+@using (Ajax.BeginForm(new AjaxOptions() { OnBegin = "begin", OnComplete = "complete" }))
+{
+    <table class="tbList">
+        <tr>
+            <td style="width:100px;">@Html.DisplayNameFor(o => o.wfName)</td>
+            <td>@Html.TextBoxFor(o => o.wfName)</td>
+            <td>@Html.ValidationMessageFor(o => o.wfName)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(o => o.wfHtmlSrc)</td>
+            <td>@Html.TextBoxFor(o => o.wfHtmlSrc)</td>
+            <td>@Html.ValidationMessageFor(o => o.wfHtmlSrc)</td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <input type="submit" value="确定" />
+            </td>
+        </tr>
+    </table>
+}

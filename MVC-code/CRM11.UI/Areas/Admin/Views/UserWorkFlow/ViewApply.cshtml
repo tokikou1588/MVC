@@ -1,0 +1,108 @@
+﻿@{
+    ViewBag.Title = "查看申请单明细";
+}
+@model CRM11.MODEL.WorkFlowApply
+@section headSecion{
+    <style type="text/css">
+        h1 {
+            font-size: 26px;
+        }
+
+        .bigFont {
+            font-size: 18px;
+        }
+
+        hr {
+            border: 2px dashed #ccc;
+        }
+
+        .tbList td {
+            text-align: center;
+        }
+        #tbApprove {
+            margin: 5px auto;
+            width:400px;
+        }
+    </style>
+}
+
+<h1>您正在查看：申请单 【@Model.wfaTitle】</h1>
+<table class="tbList bigFont">
+    <tr>
+        <th>申请内容</th>
+        <th>工作流名称</th>
+        <th>当前节点</th>
+        <th>状态</th>
+        <th>优先级</th>
+    </tr>
+    <tr style="text-align:center;">
+        <td>@Model.wfaContent</td>
+        <td>@Model.WorkFLow.wfName</td>
+        <td>@Model.WorkFlowNode.wfnName</td>
+        <td style="color:red;font-weight:bold;font-size:20px;">@CRM11.UI.Helper.EnumHelper.ApplyStatue.DDLData.Single(o => o.Value == Model.wfaStatue.ToString()).Text</td>
+        <td>@CRM11.UI.Helper.EnumHelper.ApplyPriority.DDLData.Single(o => o.Value == Model.wfaPriority.ToString()).Text</td>
+    </tr>
+    <tr>
+        <td>申请原因</td>
+        <td colspan="4" style="text-align:left;">
+            @Model.wfaRemark
+        </td>
+    </tr>
+</table>
+
+<hr />
+
+<h1>申请单明细</h1>
+<table class="tbList bigFont">
+    <tr>
+        <th>处理节点</th>
+        <th>处理人</th>
+        <th>操作</th>
+        <th>操作内容</th>
+        <th>处理时间</th>
+    </tr>
+    @foreach (var item in Model.WorkFlowApplyDetail)
+    {
+        <tr style="text-align:center;">
+            <td>@item.WorkFlowNode.wfnName</td>
+            <td>@item.Employee.empCnName</td>
+            <td>@CRM11.UI.Helper.EnumHelper.ApplyOperation.DDLData.Single(o => o.Value == item.wfadOperation.ToString()).Text</td>
+            <td>@item.wfadContent</td>
+            <td>@item.wfadAddTime.ToString()</td>
+        </tr>
+    }
+</table>
+
+@*如果当前申请单 所在节点 为 工作流的 第一个节点，则显示修改表单*@
+@if (Convert.ToBoolean(ViewBag.isInFirstNode) == true)
+{
+    <table id="tbApprove" class="tbList">
+        <tr>
+            <td style="width:100px;">@Html.DisplayNameFor(o => o.wfaTitle)</td>
+            <td>@Html.TextBoxFor(o => o.wfaTitle)</td>
+            <td>@Html.ValidationMessageFor(o => o.wfaTitle)</td>
+        </tr>
+        <tr>
+            <td style="width:100px;">@Html.DisplayNameFor(o => o.wfaContent)</td>
+            <td>@Html.TextBoxFor(o => o.wfaContent)</td>
+            <td>@Html.ValidationMessageFor(o => o.wfaContent)</td>
+        </tr>
+        <tr>
+            <td style="width:100px;">@Html.DisplayNameFor(o => o.wfaRemark)</td>
+            <td>@Html.TextBoxFor(o => o.wfaRemark)</td>
+            <td>@Html.ValidationMessageFor(o => o.wfaRemark)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(o => o.wfaPriority)</td>
+            <td>
+                @Html.DropDownListFor(o => o.wfaPriority, CRM11.UI.Helper.EnumHelper.ApplyPriority.DDLData)
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <input type="submit" value="确定" />
+            </td>
+        </tr>
+    </table>
+}
