@@ -1,0 +1,6 @@
+﻿System.Exception: 自定义异常。。。。
+   在 _03利用过滤器实现url重写.index.Page_Load(Object sender, EventArgs e) 位置 e:\传智播客\11期班\2014-2-28 服务器控件分页 & asp.net高级\源码\aspNet高级\AspNetAdv\03利用过滤器实现url重写\index.aspx.cs:行号 14
+   在 System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
+   在 System.Web.UI.Control.OnLoad(EventArgs e)
+   在 System.Web.UI.Control.LoadRecursive()
+   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)

@@ -1,0 +1,6 @@
+E:\传智播客\11期班\2014-3-1 asp.net高级 （进程外session,缓存，IIS发布绑定domain,简单抽象工厂）\源码\aspNet高级\AspNetAdv\08单例\bin\Debug\08单例.exe.config
+E:\传智播客\11期班\2014-3-1 asp.net高级 （进程外session,缓存，IIS发布绑定domain,简单抽象工厂）\源码\aspNet高级\AspNetAdv\08单例\bin\Debug\08单例.exe
+E:\传智播客\11期班\2014-3-1 asp.net高级 （进程外session,缓存，IIS发布绑定domain,简单抽象工厂）\源码\aspNet高级\AspNetAdv\08单例\bin\Debug\08单例.pdb
+E:\传智播客\11期班\2014-3-1 asp.net高级 （进程外session,缓存，IIS发布绑定domain,简单抽象工厂）\源码\aspNet高级\AspNetAdv\08单例\obj\Debug\08单例.csprojResolveAssemblyReference.cache
+E:\传智播客\11期班\2014-3-1 asp.net高级 （进程外session,缓存，IIS发布绑定domain,简单抽象工厂）\源码\aspNet高级\AspNetAdv\08单例\obj\Debug\08单例.exe
+E:\传智播客\11期班\2014-3-1 asp.net高级 （进程外session,缓存，IIS发布绑定domain,简单抽象工厂）\源码\aspNet高级\AspNetAdv\08单例\obj\Debug\08单例.pdb

@@ -1,0 +1,7 @@
+E:\传智播客\11期班\2014-3-1 asp.net高级 （进程外session,缓存，IIS发布绑定domain,简单抽象工厂）\源码\aspNet高级\AspNetAdv\PB.IDataAccessLayer\bin\Debug\PB.IDataAccessLayer.dll
+E:\传智播客\11期班\2014-3-1 asp.net高级 （进程外session,缓存，IIS发布绑定domain,简单抽象工厂）\源码\aspNet高级\AspNetAdv\PB.IDataAccessLayer\bin\Debug\PB.IDataAccessLayer.pdb
+E:\传智播客\11期班\2014-3-1 asp.net高级 （进程外session,缓存，IIS发布绑定domain,简单抽象工厂）\源码\aspNet高级\AspNetAdv\PB.IDataAccessLayer\bin\Debug\PB.Entity.dll
+E:\传智播客\11期班\2014-3-1 asp.net高级 （进程外session,缓存，IIS发布绑定domain,简单抽象工厂）\源码\aspNet高级\AspNetAdv\PB.IDataAccessLayer\bin\Debug\PB.Entity.pdb
+E:\传智播客\11期班\2014-3-1 asp.net高级 （进程外session,缓存，IIS发布绑定domain,简单抽象工厂）\源码\aspNet高级\AspNetAdv\PB.IDataAccessLayer\obj\Debug\PB.IDataAccessLayer.csprojResolveAssemblyReference.cache
+E:\传智播客\11期班\2014-3-1 asp.net高级 （进程外session,缓存，IIS发布绑定domain,简单抽象工厂）\源码\aspNet高级\AspNetAdv\PB.IDataAccessLayer\obj\Debug\PB.IDataAccessLayer.dll
+E:\传智播客\11期班\2014-3-1 asp.net高级 （进程外session,缓存，IIS发布绑定domain,简单抽象工厂）\源码\aspNet高级\AspNetAdv\PB.IDataAccessLayer\obj\Debug\PB.IDataAccessLayer.pdb

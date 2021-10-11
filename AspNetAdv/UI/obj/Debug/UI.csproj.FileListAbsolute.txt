@@ -1,0 +1,15 @@
+E:\传智播客\11期班\2014-3-1 asp.net高级 （进程外session,缓存，IIS发布绑定domain,简单抽象工厂）\源码\aspNet高级\AspNetAdv\UI\bin\Debug\UI.exe.config
+E:\传智播客\11期班\2014-3-1 asp.net高级 （进程外session,缓存，IIS发布绑定domain,简单抽象工厂）\源码\aspNet高级\AspNetAdv\UI\bin\Debug\UI.exe
+E:\传智播客\11期班\2014-3-1 asp.net高级 （进程外session,缓存，IIS发布绑定domain,简单抽象工厂）\源码\aspNet高级\AspNetAdv\UI\bin\Debug\UI.pdb
+E:\传智播客\11期班\2014-3-1 asp.net高级 （进程外session,缓存，IIS发布绑定domain,简单抽象工厂）\源码\aspNet高级\AspNetAdv\UI\bin\Debug\Bll.dll
+E:\传智播客\11期班\2014-3-1 asp.net高级 （进程外session,缓存，IIS发布绑定domain,简单抽象工厂）\源码\aspNet高级\AspNetAdv\UI\bin\Debug\IDAL.dll
+E:\传智播客\11期班\2014-3-1 asp.net高级 （进程外session,缓存，IIS发布绑定domain,简单抽象工厂）\源码\aspNet高级\AspNetAdv\UI\bin\Debug\Factory.dll
+E:\传智播客\11期班\2014-3-1 asp.net高级 （进程外session,缓存，IIS发布绑定domain,简单抽象工厂）\源码\aspNet高级\AspNetAdv\UI\bin\Debug\Bll.pdb
+E:\传智播客\11期班\2014-3-1 asp.net高级 （进程外session,缓存，IIS发布绑定domain,简单抽象工厂）\源码\aspNet高级\AspNetAdv\UI\bin\Debug\IDAL.pdb
+E:\传智播客\11期班\2014-3-1 asp.net高级 （进程外session,缓存，IIS发布绑定domain,简单抽象工厂）\源码\aspNet高级\AspNetAdv\UI\bin\Debug\Factory.pdb
+E:\传智播客\11期班\2014-3-1 asp.net高级 （进程外session,缓存，IIS发布绑定domain,简单抽象工厂）\源码\aspNet高级\AspNetAdv\UI\obj\Debug\UI.csprojResolveAssemblyReference.cache
+E:\传智播客\11期班\2014-3-1 asp.net高级 （进程外session,缓存，IIS发布绑定domain,简单抽象工厂）\源码\aspNet高级\AspNetAdv\UI\obj\Debug\UI.exe
+E:\传智播客\11期班\2014-3-1 asp.net高级 （进程外session,缓存，IIS发布绑定domain,简单抽象工厂）\源码\aspNet高级\AspNetAdv\UI\obj\Debug\UI.pdb
+E:\广州_传智播客\asp.net\2014-3-1 asp.net高级 （进程外session,缓存，IIS发布绑定domain,简单抽象工厂）\源码\aspNet高级\AspNetAdv\UI\bin\Debug\UI.exe.config
+E:\广州_传智播客\asp.net\2014-3-1 asp.net高级 （进程外session,缓存，IIS发布绑定domain,简单抽象工厂）\源码\aspNet高级\AspNetAdv\UI\obj\Debug\UI.exe
+E:\广州_传智播客\asp.net\2014-3-1 asp.net高级 （进程外session,缓存，IIS发布绑定domain,简单抽象工厂）\源码\aspNet高级\AspNetAdv\UI\obj\Debug\UI.pdb

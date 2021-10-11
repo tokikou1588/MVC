@@ -1,0 +1,4 @@
+E:\传智播客\11期班\2014-3-1 asp.net高级 （进程外session,缓存，IIS发布绑定domain,简单抽象工厂）\源码\aspNet高级\AspNetAdv\进程外session\bin\进程外session.dll
+E:\传智播客\11期班\2014-3-1 asp.net高级 （进程外session,缓存，IIS发布绑定domain,简单抽象工厂）\源码\aspNet高级\AspNetAdv\进程外session\bin\进程外session.pdb
+E:\传智播客\11期班\2014-3-1 asp.net高级 （进程外session,缓存，IIS发布绑定domain,简单抽象工厂）\源码\aspNet高级\AspNetAdv\进程外session\obj\Debug\进程外session.dll
+E:\传智播客\11期班\2014-3-1 asp.net高级 （进程外session,缓存，IIS发布绑定domain,简单抽象工厂）\源码\aspNet高级\AspNetAdv\进程外session\obj\Debug\进程外session.pdb
